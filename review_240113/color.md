@@ -1,7 +1,5 @@
 blue
 
-white
-
 green
 
 red
@@ -9,3 +7,5 @@ red
 pink
 
 black
+
+yellow
