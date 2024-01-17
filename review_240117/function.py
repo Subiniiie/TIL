@@ -35,3 +35,18 @@ def enclosed() :
     
 enclosed()
 print(a, b)  #1 2
+
+
+#sort 매서드 / sorted 함수
+#리스트를 오름차순으로 정렬하자
+numbers = [5, 4, 3, 2, 1]
+
+#sort() 매서드
+result = numbers.sort()
+print(result)   #None
+print(numbers)
+
+#sorted() 함수
+result = sorted(numbers)
+print(result)
+print(numbers)
