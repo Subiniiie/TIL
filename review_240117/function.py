@@ -50,3 +50,42 @@ print(numbers)
 result = sorted(numbers)
 print(result)
 print(numbers)
+
+#글로벌 변수
+global_var = 100
+my_list = [1, 2, 3]
+
+def local() :
+    my_list[0] = 100
+    print(my_list)
+    
+local()  #함수 호출(def된 함수와 들여쓰기 일치)
+
+global_var = 100
+def local() :
+    print(global_var)
+    #global_var += 1    #글로벌 변수의 값은 로컬에서 변경할 수 없다
+    print(global_var)
+    
+local()
+
+#글로벌 스코프에 정의된 값 바꾸기
+global_var = 100
+
+def local(parm) :
+    parm += 3
+    return parm
+
+global_var = local(global_var)
+print(global_var)
+
+#로컬에서 global 함수 사용(추천x)
+global_var = 100
+
+def local() :
+    global global_var
+    global_var += 3
+    print(global_var)
+
+local()
+print(global_var)
