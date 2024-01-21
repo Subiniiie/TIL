@@ -16,15 +16,42 @@ import requests
 
 def get_deposit_products():
     # 본인의 API KEY 로 수정합니다.
-    api_key = "MY_API_KEY"
+    api_key = ""    #깃허브에 올릴 때 지우기
 
-    # 요구사항에 맞도록 이곳의 코드를 수정합니다.
-
-    return result
+    url = f'https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth={api_key}&topFinGrpNo=020000&pageNo=1'
+    response = requests.get(url).json()
   
+    option = response.get('result').get('optionList')
+    base = response.get('result').get('baseList')
 
+    result_list = []
+    
+    for i in range(len(base)) :
+        temp = []
+        result_dict = {}
+        for j in range(len(option)) :
+            if base[i].get('fin_co_no') == option[j].get('fin_co_no') :
+                temp_dict = {'저축 금리': option[j].get('intr_rate'),
+                             '저축 기간' : option[j].get('save_trm'),
+                             '저축금리유형' : option[j].get('intr_rate_type'),
+                             '저축금리유형명' : option[j].get('intr_rate_type_nm'),
+                             '최고 우대금리' : option[j].get('intr_rate2'),
+                }
+                temp.append(temp_dict)
+
+            
+        result_dict['금리정보'] = temp
+        result_dict['금융상품명'] = base[i].get('fin_prdt_nm')
+        result_dict['금융회사명'] = base[i].get('kor_co_nm')
+        
+        result_list.append(result_dict)
+    
+    return result_list      
+    
+
+      
 if __name__ == '__main__':
     # json 형태의 데이터 반환
     result = get_deposit_products()
-    # prrint.prrint(): json 을 보기 좋은 형식으로 출력
+    #pprint.prrint(): json 을 보기 좋은 형식으로 출력
     pprint.pprint(result)

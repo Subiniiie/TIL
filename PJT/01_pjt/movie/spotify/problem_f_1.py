@@ -8,7 +8,7 @@ from pprint import pprint
 
 
 def get_popular():
-    # 여기에 코드를 작성합니다.
+    for i in range(len)
     pass
 
 

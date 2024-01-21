@@ -10,11 +10,13 @@ import requests
 
 def get_deposit_products():
   # 본인의 API KEY 로 수정합니다.
-  api_key = "MY_API_KEY"
+  api_key =""    #깃허브에 올릴 때 지우기
 
-  # 요구사항에 맞도록 이곳의 코드를 수정합니다.
+  url = f'https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth={api_key}&topFinGrpNo=020000&pageNo=1'
 
-  return result
+  response = requests.get(url).json()
+  return response.get('result').get('baseList')
+
 
     
 # 아래 코드는 수정하지 않습니다.

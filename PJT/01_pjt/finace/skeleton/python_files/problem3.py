@@ -11,11 +11,32 @@ import requests
 
 def get_deposit_products():
   # 본인의 API KEY 로 수정합니다.
-  api_key = "MY_API_KEY"
+  api_key = ""   #깃허브에 올릴 때 지우기
+  
+  url = f'https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth={api_key}&topFinGrpNo=020000&pageNo=1'
+  response = requests.get(url).json()
+  
+  option = response.get('result').get('optionList')
+  base = response.get('result').get('baseList')
 
-  # 요구사항에 맞도록 이곳의 코드를 수정합니다.
+  
+  result_list = []
+  
+  
+  for i in range(len(base)) :
+    for j in range(len(option)) :
+      new_dict = {}
+      if base[i].get('fin_co_no') == option[j].get('fin_co_no') : 
+          new_dict['금융상품코드'] = base[i].get('fin_prdt_cd') 
+          new_dict['저축 금리'] = option[j].get('intr_rate')
+          new_dict['저축 기간'] = option[j].get('save_trm')
+          new_dict['저축금리유형'] = option[j].get('intr_rate_type')
+          new_dict['저축금리유형명'] = option[j].get('intr_rate_type_nm')
+          new_dict['최고 우대금리'] = option[j].get('intr_rate2')
+          result_list.append(new_dict)
+  print(result_list)
 
-  return result
+
 
     
 # 아래 코드는 수정하지 않습니다.
