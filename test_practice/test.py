@@ -142,7 +142,81 @@
 # print(b)
 # print(c)
 # print(d)
-import module
+# import module
 
-print(module.add(4, 6))
+# print(module.add(4, 6))
 
+# numbers = [4, 6, 10, -8, 5]
+
+# for i in range(len(numbers)) :
+#     numbers[i] = numbers[i] * 2
+    
+# print(numbers)
+
+# a = 0
+
+# while a < 3 :
+#     print(a)
+#     a += 1
+# print('끝')
+
+# number = int(input('양의 정수를 입력하세요:'))
+
+# while number <= 0 :
+#     if number < 0 :
+#         print('음수를 입력했습니다')
+#     else :
+#         print('0은 양의 정수가 아닙니다.')
+#     number = int(input('양의 정수를 입력해주세요:'))
+         
+# print('잘했습니다.')
+
+
+# numbers = [1, 3, 5, 6, 7, 9, 10, 11]
+# found_even = False
+
+# for num in numbers :
+#     if num % 2 == 0 :
+#         print('첫 번째 짝수를 찾았습니다:', num)
+#         found_even = True
+#         break
+
+# if not found_even :
+#     print('짝수를 찾지못햇습니다')
+
+# numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# for num in numbers :
+#     if num % 2 :
+#         continue
+#     print(num)
+    
+# print('짝수를 찾았습니다')
+
+
+# for number in range(0, 5) :
+#     if number != 3 :
+#         print(number)
+        
+
+# numbers = [1, 2, 3, 4, 5]
+
+# squared_numbers = [num ** 2 for num in numbers]
+# print(squared_numbers)
+
+# result = []
+
+# for i in range(10) :
+#     if i % 2 :
+#         result.append(i)
+        
+# print(result)
+
+# result = [ i for i in range(10) if i % 2]
+# print(result)
+
+
+fruits = ['apple', 'banana', 'cherry']
+
+for index, fruit in enumerate(fruits, start=101) :
+    print(f'인덱스 {index}: {fruit}')
