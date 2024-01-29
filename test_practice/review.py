@@ -45,30 +45,43 @@
 # sorted_list = sorted(unsorted_list)
 # print(sorted_list)
 
-number_of_people = 0
+# number_of_people = 0
 
 
-def increase_user():
-    global number_of_people
+# def increase_user():
+#     global number_of_people
     
-    print(f'현재 가입 된 유저 수 : {number_of_people}')
-    number_of_people += 1
+#     print(f'현재 가입 된 유저 수 : {number_of_people}')
+#     number_of_people += 1
     
-    return number_of_people
+#     return number_of_people
 
-def create_user(name, age, address):
-    increase_user()
+# def create_user(name, age, address):
+#     increase_user()
     
-    print(f'{name}님 환영합니다.') 
+#     print(f'{name}님 환영합니다.') 
     
-    user_info =  {'name': name,
-                  'age': age,
-                  'address': address
-                  }
+#     user_info =  {'name': name,
+#                   'age': age,
+#                   'address': address
+#                   }
      
-    return user_info
+#     return user_info
 
 
-result = create_user('홍길동', 30, '서울')
-print(result)
-print(f'현재 가입 된 유저 수 : {number_of_people}')
+# result = create_user('홍길동', 30, '서울')
+# print(result)
+# print(f'현재 가입 된 유저 수 : {number_of_people}')
+
+def rental_book(name, number):
+    decrease_book(number)
+    print(f'{name}님이 {number}권의 책을 대여하였습니다.')
+
+number_of_book = 100
+
+def decrease_book(book_num):
+    print('남은 책의 수 :', number_of_book-book_num)
+
+ 
+rental_book('홍길동', 3)
+
