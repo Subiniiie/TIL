@@ -9,6 +9,23 @@ for k in range(N) :
             visited[arr[k][0]+i][arr[k][1]+j] = k+1
 
 
+# for w in range(1, N+1) :
+#     cnt = 0
+#     for i in range(1001) :
+#         for j in range(1001) :
+#             if visited[i][j] == w :
+#                 cnt += 1
+#     print(cnt)
+
+for i in range(1001) :
+    for j in range(1001) :
+        if visited[i][j] != 0 :
+            max_index = visited[i][j]
+            for k in range(N) :
+                if i >= arr[k][0] and i < arr[k][0] + arr[k][2] and j >= arr[k][1] and arr[k][1] + arr[k][3] :
+                    max_index = max(max_index, visited[i][j])
+            visited[i][j] = max_index
+
 for w in range(1, N+1) :
     cnt = 0
     for i in range(1001) :
