@@ -1,22 +1,34 @@
-cnt = 0
-h = []
-
-arr = [int(input()) for _ in range(9)]
-
+arr = ['o', 'x']
 path = []
+nanjeang = [int(input()) for _ in range(9)]
 
-def f(x, sum) :
-    if x == 9 :
-        print(path)
+temp = []
+def print_nanjeang() :
+    global result
+    if path.count('o') == 7 :
+        for i in range(9) :
+            if path[i] == 'o' :
+                temp.append(nanjeang[i])
+
+
+def run(lev) :
+    if lev == 9 :
+        print_nanjeang()
         return
 
-    for i in range(1, max(arr)+1) :
-        if used[arr[i]] == True :
-            continue
-        used[arr[i]] = True
+    for i in range(2) :
         path.append(arr[i])
-        f(arr)
+        run(lev + 1)
         path.pop()
-        used[arr[i]] = False
 
-f(arr[0])
+run(0)
+
+result = []
+for i in range(len(temp) - 7) :
+    if sum(temp[i:i+7]) == 100 :
+        result = temp[i:i+7]
+        break
+
+result.sort()
+for i in range(len(result)) :
+    print(result[i])
