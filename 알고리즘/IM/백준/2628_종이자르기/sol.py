@@ -13,20 +13,19 @@ for k in range(number) :
 
 garo_moeum.sort()
 sero_moeum.sort()
+max_sum = 0
+for i in garo_moeum[0:-1] :
+     if i == 0 :
+         x = garo_moeum[0]
+     else :
+         x = garo_moeum[i-1] - garo_moeum[i]
 
-max_num = 0
-for i in range(len(garo_moeum)) :
-    if i == 0 :
-        x = garo_moeum[i]
-    if j == 0 :
-        y = sero_moeum[j]
-    if i == len(garo_moeum)-1 :
-        x = len(garo_moeum)-garo_moeum[-2]
-    if j == len(sero_moeum)-1 :
-        y = len(sero_moeum)-garo_moeum[-2]
-    if i != 0 and j != 0 :
-        x = garo_moeum[i]-garo_moeum[i-1]
-        y = sero_moeum[i]-sero_moeum[i-1]
-    if max_num < x * y :
-        max_num = x * y
-print(max_num)
+     for j in sero_moeum[0:-1] :
+         if j == 0 :
+             y = sero_moeum[0]
+         else :
+             y = sero_moeum[i-1] - sero_moeum[i]
+
+         if max_sum < x * y :
+             max_sum = x * y
+print(max_sum)
