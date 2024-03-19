@@ -1,12 +1,12 @@
 arr = list(input().split())
 
-alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G',
-         'H', 'I', 'J', 'K', 'L', 'M', 'N',
-         'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-         'V', 'W', 'X', 'Y', 'Z']
+alpha = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+result = ''
+num = int(arr[0])
 
-dict = {}
-k = 9
-for key in alpha :
-    dict[key] = k + 1
-    k += 1
+while num > 0 :
+    remainder = num % int(arr[1])
+    result += alpha[remainder]
+    num = num // int(arr[1])
+
+print(result[::-1])
