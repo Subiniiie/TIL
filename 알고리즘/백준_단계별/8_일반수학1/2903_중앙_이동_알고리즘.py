@@ -1,3 +1,5 @@
+# 맞았는데 시간 초과
+
 import math
 
 N = int(input())
@@ -5,6 +7,7 @@ num_sum = 4
 
 for x in range(N) :
     num = int(math.sqrt(4 ** x))
+    print(num)
 
     for i in range(num) :
         for j in range(num) :
