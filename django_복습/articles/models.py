@@ -1,0 +1,12 @@
+from django.db import models
+from django.conf import settings
+
+
+# Create your models here.
+class Article(models.Model):
+    # 작성자 정보를 담기위한 1:N 관계
+    # User Model -> 'accounts.User' 문자열 직접 작성해도 문제는 없음
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles')
+    title = models.TextField()
+    content = models.TextField()
