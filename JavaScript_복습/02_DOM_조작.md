@@ -22,4 +22,16 @@
 - `Node.removeChild()` 
   - DOM에서 자식 Node를 제거
   - 제거된 Node를 반환
+  - 
 # 4. 스타일 조작
+- 해당 요소의 모든 style 속성 목록을 포함하는 속성
+```javascript
+const pTag = codument.querySelector('p')
+
+pTag.style.color = 'crimson'
+pTag.style.fontsize = '2rem'
+pTag.style.border = '1px solid black'
+```
+```javascript
+pTag.style.cssText = `color: crimson; font-size: 2rem; border: 1px solid black`
+```

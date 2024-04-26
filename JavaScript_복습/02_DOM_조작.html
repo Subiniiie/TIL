@@ -19,6 +19,7 @@
     <h1 class="h1Tag">색깔 변경</h1>
     <h1 class="contentChange">내용 수정</h1>
     <a href="https://www.google.com/">url</a>
+    <p class="pTag">안녕하세요. JS 복습 중입니다.</p>
     <script>
         // 클래스 조작
         const heading = document.querySelector('.heading')
@@ -68,6 +69,11 @@
 
         // // 삭제
         h1Tag.removeChild(h2Tag)
+
+        // style 조작
+        const pTag = document.querySelector('.pTag')
+        pTag.style.cssText = `color: crimson; font-size: 2rem; border: 1px solid black;`
+        
     </script>
 </body>
 </html>
