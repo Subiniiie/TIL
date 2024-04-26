@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: crimson;
+        }
+
+        .navy {
+            color: #1E82CD;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">DOM 조작</h1>
+    <h1 class="h1Tag">색깔 변경</h1>
+    <a href="https://www.google.com/">url</a>
+    <script>
+        // 클래스 조작
+        const heading = document.querySelector('.heading')
+        heading.classList.add('red')
+        console.log(heading)
+
+        // heading.classList.remove('red')
+        // console.log(heading)
+
+        const h1Tag = document.querySelector('.h1Tag')
+        h1Tag.classList.toggle('navy')
+        console.log(h1Tag)
+
+        // 일반 속성 조작
+        const aTag = document.querySelector('a')
+        console.log(aTag.getAttribute('href'))
+
+        aTag.setAttribute('href', 'https://www.naver.com/')
+        console.log(aTag.getAttribute('href'))
+
+        aTag.removeAttribute('href')
+        console.log(aTag.getAttribute('href'))
+    </script>
+</body>
+</html>
