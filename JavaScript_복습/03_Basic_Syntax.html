@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let number = 10
+        // 가능
+        // number = 20
+        // 불가능
+        // let number = 20
+        console.log(number)
+
+        const number2 = 10
+        // 불가능
+        // number2 = 20
+        // 불가능
+        // const number2 = 20
+        console.log(number2)
+
+        let x = 1
+        if (x === 1) {
+            let x = 2
+
+            console.log(x)
+        }
+        console.log(x)
+
+        // 원시 자료형
+        const bar = 'bar'
+        let a = 10
+        let b = a
+        b = 20
+        // b = 20
+
+        // 참조 자료형
+        const obj1 = {name: 'Alice', age: 30}
+        const obj2 = obj1
+        obj2.age = 40
+
+
+        // 조건문 if
+        const name = 'customer'
+
+        if (name === 'admin') {
+            console.log('관리자님 환영해요')
+        } else if (name === 'customer') {
+            console.log('고객님 환영해요')
+        } else {
+            console.log(`반갑습니다 ${name}님`)
+        }
+
+        // 삼항 연산자
+        const age = 20
+        const message = (age > 18) ? '성인' : '미성년자'
+        console.log(message)
+
+        // while 문
+        let i = 0
+        while (i < 6) {
+            console.log(i)
+            i += 1
+        }
+
+        // for 문
+        for (let i = 0; i < 6; i++) {
+            console.log(i)
+        }
+
+        // for ... in 문
+        const fruits = { a: 'apple', b: 'banana'}
+        for (const property in object) {
+            console.log(property)
+            console.log(object[property])
+        }
+
+        // for ... of 문
+        const numbers = [0, 1, 2, 3]
+        for (const number of numbers) {
+            console.log(number)
+        }
+
+        
+    </script>
+</body>
+</html>
