@@ -15,5 +15,11 @@
 - `textContent`
   
 # 3. DOM 요소 조작
-
+- `document/createElement(tagName)` 작성한 tagName의 HTML 요소를 생성하여 반환  
+- `Node.appendChild()` 
+  - 한 Node를 특정 부모 Node의 자식 NodeList 중 마지막 자식으로 삽입
+  - 추가된 Node 객체를 반환
+- `Node.removeChild()` 
+  - DOM에서 자식 Node를 제거
+  - 제거된 Node를 반환
 # 4. 스타일 조작

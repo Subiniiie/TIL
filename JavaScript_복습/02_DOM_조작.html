@@ -48,6 +48,26 @@
         console.log(contentChange.textContent)
         contentChange.textContent = 'JS 복습 중'
         console.log(contentChange.textContent)
+
+        // DOM 요소 조작
+        // 생성
+        const h2Tag = document.createElement('h2')
+        h2Tag.textContent = '제목 생성'
+        console.log(h2Tag)
+
+        const h3Tag = document.createElement('h3')
+        h3Tag.textContent = '내용 생성'
+        console.log(h3Tag)
+
+        // 추가
+        // h1Tag에 추가할거임
+        h1Tag.appendChild(h2Tag)
+        console.log(h1Tag)
+        h1Tag.appendChild(h3Tag)
+        console.log(h1Tag)
+
+        // // 삭제
+        h1Tag.removeChild(h2Tag)
     </script>
 </body>
 </html>
