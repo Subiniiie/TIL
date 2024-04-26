@@ -12,5 +12,6 @@
 - `Element.removeAttribute()`
   - 요소에서 지정된 이름을 가진 속성 제거
 # 2. HTML 콘텐츠 조작
+- `textContent`
 # 3. DOM 요소 조작
 # 4. 스타일 조작

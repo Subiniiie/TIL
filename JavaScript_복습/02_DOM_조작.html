@@ -17,6 +17,7 @@
 <body>
     <h1 class="heading">DOM 조작</h1>
     <h1 class="h1Tag">색깔 변경</h1>
+    <h1 class="contentChange">내용 수정</h1>
     <a href="https://www.google.com/">url</a>
     <script>
         // 클래스 조작
@@ -40,6 +41,13 @@
 
         aTag.removeAttribute('href')
         console.log(aTag.getAttribute('href'))
+
+        // HTML 콘텐츠 조작
+    
+        const contentChange = document.querySelector('.contentChange')
+        console.log(contentChange.textContent)
+        contentChange.textContent = 'JS 복습 중'
+        console.log(contentChange.textContent)
     </script>
 </body>
 </html>
