@@ -35,3 +35,28 @@ pTag.style.border = '1px solid black'
 ```javascript
 pTag.style.cssText = `color: crimson; font-size: 2rem; border: 1px solid black`
 ```
+
+
+## 참고
+### 1. Node
+- DOM은 기본 구성 단위
+- DOM 트리의 각 부분은 Node라는 객체로 표현됨
+  - Document Node => HTML 문서 전체를 나타내는 노드
+  - Element Node => HTML 요소를 나타내는 노드 (예를 들어 p)
+  - Text Node => HTML 텍스트 (Element Node 내의 텍스트 컨텐츠를 나타냄)
+  - Attribute Node => HTML 요소의 속성을 나타내는 노드
+
+### 2. NodeList
+- DOM 메서드를 사용해 선택한 Node의 목록
+- 배열과 유사한 구조를 가짐
+- Index만으로 각 항목에 접근 가능
+- Javascript의 배열 메서드 사용 가능
+- querySelectAll()에 의해 반환되는 NodeList는 DOM의 변경사항을 실시간으로 반영하지 않음
+  - DOM이 나중에 변경되더라도 이전에 이미 선택한 NodeList 값은 변하지 않음
+
+### 3. Element
+- Node의 하위 유형
+- Element는 DOM 트리에서 HTML 요소를 나타내는 특별한 유형의 Node
+- 예를 들어 `<p>` `<div>` `<span>` `<body>` 등의 HTML 태그들이 Element 노드를 생성
+- Node의 속성과 메서드를 모두 가지고 있으며 추가적으로 요소 특화된 기능 (예. className, innerHTML, id 등)을 가지고 있음
+- 모든 Element는 Node지만 모든 Node가 Element인 것은 아님
