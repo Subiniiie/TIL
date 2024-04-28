@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outerouter {
+            width: 300px;
+            height: 300px;
+            background-color: yellowgreen;
+        }
+
+        #outer {
+            width: 200px;
+            height: 200px;
+            background-color: crimson;
+        }
+
+        #inner {
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        form
+        <div id="div">
+            div
+            <p id="p">p</p>
+        </div>
+    </form>
+
+    <div id="outerouter">
+        outerouter
+        <div id="outer">
+            outer
+            <div id="inner">
+                inner
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 버블링
+        const formElement = document.querySelector('#form')
+        const divElement = document.querySelector('#div')
+        const pElement = document.querySelector('#p')
+
+        const clickhandler1 = function(event) {
+            console.log('form이 클릭되었습니다.')
+        }
+        const clickhandler2 = function(event) {
+            console.log('div가 출력되었습니다.')
+        }
+        const clickhandler3 = function(event) {
+            console.log('p가 출력되었습니다.')
+        }
+
+        formElement.addEventListener('click', clickhandler1)
+        divElement.addEventListener('click', clickhandler2)
+        pElement.addEventListener('click', clickhandler3)
+
+        // target & currenttarget
+        const outerOuterElement = document.querySelector('#outerouter')
+
+        const clickHandler = function(event) {
+            console.log('curretTarget:', event.currentTarget.id)
+            console.log('target:', event.target.id)
+        }
+
+        outerOuterElement.addEventListener('click', clickHandler)
+    </script>
+</body>
+</html>
