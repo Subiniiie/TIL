@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. 버튼을 클릭하면 숫자를 1씩 증가 -->
+    <button id="btn">버튼</button>
+    <p>클릭횟수 : <span id="counter">0</span></p>
+
+
+    <!-- 2. 사용자의 입력 값을 실시간으로 출력하기 -->
+    <input type="text" id="text-input">
+    <p id="react"></p>
+
+
+    <!-- 3. 버튼을 클릭하면 출력한 값의 CSS 스타일 변경하기 -->
+    <h1 id="h1-color"></h1>
+    <button id="btn-click-color">클릭</button>
+    <input type="text" id="text-input-color">
+
+    <br>
+
+    <!-- 4. todo 실습 -->
+    <input type="text" id="todo-input">
+    <button id="todo-btn">+</button>
+    <ul></ul>
+
+    <!-- 5. 로또 번호 생성기 실습 -->
+    <h1>로또 추첨 번호</h1>
+    <button id="lottery-btn">행운 번호 받기</button>
+    <div id="lottery-div"></div>
+
+
+    <!-- 6. 이벤트 동작 취소 실습 -->
+    <h1 id="prevent-text">중요한 내용</h1>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script>
+        // 1. 버튼을 클릭하면 숫자를 1씩 증가
+        const btn = document.querySelector('#btn')
+        const counter = document.querySelector('#counter')
+        let cnt = 0
+        const clickBtn = function() {
+            cnt += 1
+            counter.textContent = cnt
+        }
+        btn.addEventListener('click', clickBtn)
+
+
+        // 2. 사용자의 입력 값을 실시간으로 출력하기
+        const textInput = document.querySelector('#text-input')
+        const react = document.querySelector('#react')
+
+        const inputHandler = function(event) {
+            react.textContent = event.CurrentTarget.value
+        }
+        textInput.addEventListener('input', inputHandler)
+
+
+        // 3. 버튼을 클릭하면 출력한 값의 CSS 스타일 변경하기
+        const h1Color = document.querySelector('#h1-color')
+        const btnClickColor = document.querySelector('#btn-click-color')
+        const textInputColor = document.querySelector('#text-input-color')
+
+        const reactText = function(event) {
+            h1Color.textContent = event.currentTarget.value
+        }
+
+        const changeColor = function(event) {
+            h1Color.classList.toggle('blue')
+        }
+
+        textInputColor.addEventListener('input', reactText)
+        btnClickColor.addEventListener('click', changeColor)
+
+  
+        // 4. todo 실습
+        const todoInput = document.querySelector('#todo-input')
+        const todoBtn = document.querySelector('#todo-btn')
+        const ulTag = document.querySelector('ul')
+
+        const makeTodo = function(event) {
+            const inputData = todoInput.value
+            console.log(inputData)
+            if (inputData.trim()) {
+              const liTag = document.createElement('li')
+              liTag.textContent = inputData
+              ulTag.appendChild(liTag)
+              todoInput.value = ''
+            } else {
+                alert('할 일을 입력하세요.')
+            }
+
+        }
+
+        todoBtn.addEventListener('click', makeTodo)
+
+
+        // 5. 로또 번호 생성기 실습
+        const lotteryBtn = document.querySelector('#lottery-btn')
+        const lottertyDiv = document.querySelector('#lottery-div')
+
+        const makeLottery = function(event) {
+            const numbers = _.range(1, 46)
+            const sixNumbers = _.sampleSize(numbers, 6)
+            const ulLottery = document.createElement('ul')
+            sixNumbers.forEach((number) => {
+                const liLottery = document.createElement('li')
+                ulLottery.appendChild(liLottery)
+                liLottery.textContent = number
+            })
+            lottertyDiv.appendChild(ulLottery)
+        }
+        lotteryBtn.addEventListener('click', makeLottery)
+
+        
+        // 6. 이벤트 동작 취소
+        const preventText = document.querySelector('#prevent-text')
+        preventText.addEventListener('copy', function(event) {
+            console.log(event)
+            event.preventDefault()
+            alert('복사할 수 없습니다.')
+        })
+    </script>
+</body>
+</html>
