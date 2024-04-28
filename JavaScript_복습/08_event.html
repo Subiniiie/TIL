@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">버튼</button>
+    <script>
+        const btn = document.querySelector('#btn')
+
+        // 발생한 이벤트를 나타내는 event 객체를 유일한 매개변수로 받음
+        const detectClick = function(event) {
+            console.log(event)
+            console.log(event.currentTarget)
+            console.log(this)
+        }
+        btn.addEventListener('click', detectClick)
+    </script>
+</body>
+</html>
