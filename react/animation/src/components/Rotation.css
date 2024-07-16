@@ -1,0 +1,75 @@
+.main-container-3 {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 130vh;
+}
+
+.satellites1 {
+    animation: rotate-axis-1 10s linear infinite;
+    transform-style: preserve-3d;
+}
+
+.satellite1 {
+    width: 100px;
+    margin-bottom: 200px;
+    padding: 0 2px;
+    transform: translateY(50px);
+}
+
+
+@keyframes rotate-axis-1 {
+    from {
+        transform: perspective(800px) rotateY(0deg);
+    }
+    to {
+        transform: perspective(800px) rotateY(360deg);
+    }
+}
+
+.satellites2 {
+    animation: rotate-axis-2 25s linear infinite;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 300px;
+
+}
+
+.satellite2 {
+    position: absolute;
+    width: 100px;
+    transform: rotateY(calc(var(--i) * 1deg)) translateZ(190px);
+}
+
+@keyframes rotate-axis-2 {
+    from {
+        transform: perspective(1500px) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1500px) rotateY(360deg);
+    }
+}
+
+.satellites3 {
+    animation: rotate-axis-3 10s linear infinite;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+}
+
+.satellite3 {
+    position: absolute;
+    width: 100px;
+    transform: rotateY(calc(var(--i) * 1deg)) translateZ(225px);
+}
+
+@keyframes rotate-axis-3 {
+    from {
+        transform: rotateZ(350deg) perspective(1500px) rotateY(0deg);
+    }
+    to {
+        transform: rotateZ(350deg) perspective(1500px) rotateY(360deg);
+    }
+}
+

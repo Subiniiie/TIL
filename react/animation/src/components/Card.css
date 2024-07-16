@@ -1,0 +1,42 @@
+.main-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.card-1 {
+    display: inline-grid;
+    transition: transform 0.8s;
+    transform: perspective(800px) rotateY(0deg);
+    transform-style: preserve-3d;
+}
+
+.card-1:hover {
+    transform: perspective(800px) rotateY(180deg);
+}
+
+.card-1 > * {
+    grid-area: 1 / 1 / 1 / 1;
+    width: 180px;
+    height: 100px;
+    padding: 12px;
+    border-radius: 8px;
+    backface-visibility: hidden;
+}
+
+.card-1-front {
+    background: linear-gradient(rgb(80, 67, 52), rgb(111, 93, 73));
+}
+
+.card-1-back {
+    background: linear-gradient(rgb(127, 106, 83), rgb(156, 132, 104));
+    transform: rotateY(180deg);
+}
+
+
+.card-2 {
+    display: inline-grid;
+    transition: transform 0.8s;
+    transform: perspective(800px) rotateX(0deg);
+    transform-style: preserve-3d;
+}

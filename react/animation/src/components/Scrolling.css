@@ -1,0 +1,82 @@
+.main-container-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blue-box, .violet-box {
+    width: 450px;
+    height: 300px;
+    background-size: cover;
+    position: relative;
+    margin: 10px 0;
+    transition: transform 0.5s ease;
+}
+
+.blue-box:hover,
+.violet-box:hover {
+    transform: translateY(-10px);
+}
+    
+.blue-box {
+    position: relative;
+    background-image: url("/src/image/sky.jpg");
+}
+
+.violet-box {
+    background-image: url("/src/image/sunset.jpg");
+}
+
+
+.blue-box-text, .violet-box-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.desc, .desc2, .desc3 {
+    width: 400px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+
+.desc {
+    position: absolute;
+    top: 700px;
+    left: 400px;
+    color: blue;
+}
+
+.desc2 {
+    position: absolute;
+    top: 1300px;
+    right: 300px;
+    color: red;
+}
+
+.desc3 {
+    position: absolute;
+    top: 1700px;
+    left: 200px;
+    color: green;
+}
+
+.title {
+    position: absolute;
+    display: inline-block;
+    top: 600px;
+    left: 530px;
+    width: auto;
+    font-size: 50px;
+    color: black;
+    animation: cursor 0.7s infinite;
+}
+
+@keyframes cursor {
+    0% {border-right: 2px solid #fff;}
+    50% {border-right: 2px solid #000;}
+    100% {border-right: 2px solid #fff;}
+    
+}
