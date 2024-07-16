@@ -6,12 +6,18 @@
 
 .card-1 {
     display: inline-grid;
-    transition: transform 0.8s;
-    transform: perspective(800px) rotateY(0deg);
+    transition: transform 1s;
+    margin: 20px;
+    /* 
+       perspective : 3D? 입체?
+       rotateY()  어느 각도로 돌 건지(시작 각도)
+    */
+    transform: rotateY(0deg);
     transform-style: preserve-3d;
 }
 
 .card-1:hover {
+    /* hover에서 rotateY() 어느 각도까지 돌건지 */
     transform: perspective(800px) rotateY(180deg);
 }
 
@@ -39,4 +45,59 @@
     transition: transform 0.8s;
     transform: perspective(800px) rotateX(0deg);
     transform-style: preserve-3d;
+    margin: 20px;
+}
+
+.card-2 > * {
+    grid-area: 1 / 1 / 1 / 1;
+    width: 180px;
+    height: 100px;
+    padding: 12px;
+    border-radius: 8px;
+    backface-visibility: hidden;
+}
+
+.card-2:hover {
+    transform: rotateX(180deg);
+}
+
+.card-2-front {
+    background-color: aquamarine;
+    float: left;
+}
+
+.card-2-back {
+    background-color: aqua;
+    float: left;
+    transform: rotateX(180deg);
+}
+
+.card-3 {
+    display: inline-grid;
+    transition: transform 0.8s;
+    transform: rotateZ(0deg);
+    transform-style: preserve-3d;
+    margin: 20px;
+}
+
+.card-3:hover {
+    transform: perspective(800px) rotateZ(180deg);
+}
+
+.card-3 > * {
+    grid-area: 1 / 1 / 1 / 1;
+    width: 180px;
+    height: 100px;
+    padding: 12px;
+    border-radius: 8px;
+    backface-visibility: hidden;
+}
+
+.card-3-front {
+    background-color: bisque;
+}
+
+.card-3-back {
+    background-color: pink;
+    transform: rotateZ(180deg);
 }
