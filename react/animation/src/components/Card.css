@@ -101,3 +101,15 @@
     background-color: pink;
     transform: rotateZ(180deg);
 }
+
+.card-4 {
+    margin: 20px;
+}
+
+.card-4 > * {
+    width: 180px;
+    height: 100px;
+    padding: 12px;
+    background-color: lightblue;
+    border-radius: 8px;
+}

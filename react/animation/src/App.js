@@ -5,6 +5,7 @@ import Scrolling from './components/Scrolling'
 import Rotation from './components/Rotation'
 import Motion from './components/Motion'
 import Card from './components/Card'
+import Masuri from './components/Masuri'
 
 function App() {
 return (
@@ -16,6 +17,7 @@ return (
         <Route path='/rotation' element={<Rotation />}></Route>
         <Route path='/motion' element={<Motion />}></Route>
         <Route path='/card' element={<Card />}></Route>
+        <Route path='/masuri' element={<Masuri />}></Route>
     </Routes>
   </div>
   )
