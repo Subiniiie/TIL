@@ -6,6 +6,7 @@ import Rotation from './components/Rotation'
 import Motion from './components/Motion'
 import Card from './components/Card'
 import Masuri from './components/Masuri'
+import Pokemon from './components/Pokemon'
 
 function App() {
 return (
@@ -18,6 +19,7 @@ return (
         <Route path='/motion' element={<Motion />}></Route>
         <Route path='/card' element={<Card />}></Route>
         <Route path='/masuri' element={<Masuri />}></Route>
+        <Route path='/pokemon' element={<Pokemon />}></Route>
     </Routes>
   </div>
   )

@@ -12,6 +12,7 @@ const Home = function() {
            <div><Link to='/motion'>Go To Motion</Link></div>
            <div><Link to='/card'>Go To Card</Link></div>
            <div><Link to='/masuri'>Go To Masuri</Link></div>
+           <div><Link to='/pokemon'>Go To Pokemon</Link></div>
         </div>
     )
 }
