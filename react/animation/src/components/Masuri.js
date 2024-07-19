@@ -3,11 +3,11 @@ import './Masuri.css'
 
 const Masuri = function() {
     return (
-        <body>
+        <div>
             {/* <div className="box">
                 <div className="loader"></div>
             </div> */}
-        </body>
+        </div>
     )
 }
 
