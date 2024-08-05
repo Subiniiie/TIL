@@ -1,11 +1,20 @@
 import sys
 n = int(sys.stdin.readline())
 
-def decimal(a, b) :
+def check(x) :
+    for i in range(2, int(x**0.5)+1) :
+        if x % i == 0 :
+            return False
+    return True
 
-
-
-for _ in range(n) :
-    num = int(sys.stdin.readline())
-
-    if n
+for i in range(n) :
+    x = int(sys.stdin.readline())
+    while True :
+        if x == 0 or x == 1 :
+            print(2)
+            break
+        if check(x) :
+            print(x)
+            break
+        else :
+            x += 1
