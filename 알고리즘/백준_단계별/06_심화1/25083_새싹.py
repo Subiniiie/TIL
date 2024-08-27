@@ -1,7 +1,0 @@
-print('         ,r\'"7')
-print('r`-_   ,\'  ,', end = '')
-print('/')
-print(' \. ". L_r\'')
-print('   `~\/')
-print('      |')
-print('      |')
