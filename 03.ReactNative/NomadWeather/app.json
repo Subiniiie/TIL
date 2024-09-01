@@ -22,6 +22,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "openWeatherApiKey": "10c26ff4b41b701d5645ca27eb3f088f"
     }
   }
 }
