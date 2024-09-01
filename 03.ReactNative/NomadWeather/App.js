@@ -3,10 +3,21 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Dimensions, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import Constants from 'expo-constants';
+import { Fontisto } from '@expo/vector-icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-const API_KEY = Constants.expoConfig.extra.openWeatherApiKey;;
+const API_KEY = Constants.expoConfig.extra.openWeatherApiKey;
+
+const icons = {
+  'Clouds': "cloudy",
+  'Clear': 'day-sunny',
+  'Atmosphere': 'cloudy-guest',
+  'Snow': 'snowflake',
+  'Rain': 'rain',
+  'Drizzle': 'rains',
+  'Thunderstorm': 'lightning',
+}
 
 export default function App() {
   const [ city, setCity ] = useState('Loading...');
@@ -54,13 +65,26 @@ export default function App() {
           contentContainerStyle={styles.weather}
         >
           {days.length === 0 ? (
-            <View style={styles.day}>
+            <View style={{...styles.day, alignItems: 'center'}}>
               <ActivityIndicator color='white' style={{ marginTop: 10 }} size='large' />
             </View>
           ) : (
             days.map((day, index) => 
               <View key={index} style={styles.day}>
-                <Text style={styles.temp}>{parseFloat(day.main.temp).toFixed(1)}</Text>
+                <View 
+                  style={{ 
+                    flexDirection:'row', 
+                    alignItems:'center',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    }}>
+                <Text style={styles.temp}>
+                  {parseFloat(day.main.temp).toFixed(1)}
+                </Text>
+                <Fontisto name={icons[day.weather[0].main]} size={48
+
+                } color='white' />
+                </View>
                 <Text style={styles.description}>{day.weather[0].main}</Text>
                 <Text style={styles.tinyText}>{day.weather[0].description}</Text>
               </View>)
@@ -88,18 +112,20 @@ const styles = StyleSheet.create({
   },
   day: {
     width: SCREEN_WIDTH,
-    alignItems: 'center',
   },
   temp: {
-    fontSize: 178,
+    fontSize: 98,
     fontWeight: "600",
+    color: "white",
     marginTop: 50,
   },
   description: {
-    fontSize: 60,
+    color: "white",
+    fontSize: 32,
     marginTop: -30,
   },
   tinyText: {
+    color: "white",
     fontSize: 20,
   },
 });
