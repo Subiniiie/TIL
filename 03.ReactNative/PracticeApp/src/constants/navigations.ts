@@ -1,5 +1,6 @@
 const navigations = {
-    MAINHOME : 'MainHome'
+    MAINHOME : 'MainHome',
+    MYPAGE : 'MyPage',
 } as const;
 
 export {navigations};

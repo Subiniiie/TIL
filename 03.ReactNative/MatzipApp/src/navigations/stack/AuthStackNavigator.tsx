@@ -12,6 +12,8 @@ export type AuthStackParamList = {
     [authNavigations.SIGNUP]: undefined
 }
 
+// 파라미터로 같이 넘겨줄 값이 없기 때문이다.
+
 
 const Stack = createStackNavigator<AuthStackParamList>();
 function AuthStackNavigator() {

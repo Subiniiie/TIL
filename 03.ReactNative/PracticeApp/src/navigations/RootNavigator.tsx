@@ -1,18 +1,11 @@
-import MainHomeScreen from "../screens/MainHomeScreen";
-import { navigations } from "../constants/navigations";
-import { createStackNavigator } from "@react-navigation/stack";
-
-export type StackParamList = {
-    [navigations.MAINHOME]: undefined;
-}
-
-const Stack = createStackNavigator<StackParamList>();
-
+import StackNavigator from '../stack/StackNavigator'
 
 function RootNavigator() {
     return (
         <>
-            
+            <StackNavigator />
         </>
     )
 }
+
+export default RootNavigator;
