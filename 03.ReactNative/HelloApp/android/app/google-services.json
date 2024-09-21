@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "628954617793",
+    "project_id": "alarmapp-f3f68",
+    "storage_bucket": "alarmapp-f3f68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628954617793:android:767e59fdbab2980ae40140",
+        "android_client_info": {
+          "package_name": "com.HelloApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP3LqxUY23E-8gmKYyReRlFKsCvy2b8uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
