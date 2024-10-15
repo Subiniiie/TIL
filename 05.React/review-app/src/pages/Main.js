@@ -11,6 +11,7 @@ export default function Main() {
             <div>
                 <button onClick={() => navigate('/product')}>product</button>
                 <button onClick={() => navigate('/parents')}>useMemo</button>
+                <button onClick={() => navigate('/calculate')}>useMemo2</button>
             </div>
             <Counter />
         </div>
