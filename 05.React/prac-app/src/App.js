@@ -1,14 +1,22 @@
-import './App.css';
-import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import Calculate from './components/Main/Calculate/Calculate';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Main />}></Route>
+        <Route path='/calculate' element={<Calculate />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+
+
+
+
+
