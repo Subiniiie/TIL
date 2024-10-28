@@ -1,13 +1,13 @@
 import React from 'react';
 import Input from '../components/Input';
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
   return (
     <div>
-      로그인
-      <Input formType='login'/>
+      회원가입
+      <Input formType='sign'/>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

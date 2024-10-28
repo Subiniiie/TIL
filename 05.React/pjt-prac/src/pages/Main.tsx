@@ -8,10 +8,15 @@ const Main: React.FC = () => {
     const handleGoLogin = () => {
         navigate('/login');
     }
+
+    const handleGoSignUp = () => {
+        navigate('/signup')
+    }
   return (
     <div>
       메인
       <button onClick={handleGoLogin}>로그인</button>
+      <button onClick={handleGoSignUp}>회원가입</button>
     </div>
   );
 };
