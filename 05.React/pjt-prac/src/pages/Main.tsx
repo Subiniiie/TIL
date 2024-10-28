@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Login from './Login';
 
 const Main: React.FC = () => {
     const navigate = useNavigate();
@@ -12,11 +11,16 @@ const Main: React.FC = () => {
     const handleGoSignUp = () => {
         navigate('/signup')
     }
+
+    const handleGoFeed = () => {
+        navigate('/feed')
+    }
   return (
     <div>
       메인
       <button onClick={handleGoLogin}>로그인</button>
       <button onClick={handleGoSignUp}>회원가입</button>
+      <button onClick={handleGoFeed}>피드 메인</button>
     </div>
   );
 };

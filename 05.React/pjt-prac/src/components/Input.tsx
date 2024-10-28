@@ -1,4 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { userInfoActions } from '../store/userInfo';
 
 interface InputProps {
     formType: 'sign' | 'login';
@@ -18,6 +20,8 @@ const exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 const phoneRule = /^(070|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/;
 
 const Input: React.FC<InputProps> = ({ formType }) => {
+    const dispatch = useDispatch();
+    
     const [ formData, setFormData ] = useState<FormData>({
         userId: '',
         confirmNumber: '',
@@ -72,6 +76,8 @@ const Input: React.FC<InputProps> = ({ formType }) => {
             // 이때 백한테 회원가입 정보 보내기
         } else if (formType === 'login') {
             // 이때 백한테 로그인 정보 보내기
+            dispatch(userInfoActions.setNickname(formData.nickname || ''));
+            dispatch(userInfoActions.setUserId(formData.userId));
         }
     };
 
