@@ -31,7 +31,6 @@ const Input: React.FC<InputProps> = ({ formType }) => {
     const [ notices, setNotices ] = useState<Record<string, string>>({});
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log('e.target :', e.target)
         const { name, value } = e.target;
         
         setFormData({
@@ -53,6 +52,10 @@ const Input: React.FC<InputProps> = ({ formType }) => {
         // 인증 번호는 어떻게 확인하냐
         if (name === 'userId' && !exptext.test(value)) {
             noticeMessage = '올바른 이메일 형식을 입력해주세요.'
+        } else if (name === 'password' && value.length < 8 || 16 < value.length) {
+            noticeMessage = '비밀번호는 8-16글자 사이로 입력해주세요.'
+        } else if (name === 'confirmPassword' && value !== formData.password) {
+            noticeMessage = '비밀번호가 일치하지 않습니다.'
         } else if (name === 'phoneNumber' && !phoneRule.test(value)) {
             noticeMessage = '올바른 번호 형식을 입력해주세요.'
         }
@@ -65,7 +68,11 @@ const Input: React.FC<InputProps> = ({ formType }) => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        // console.log('formData:', formData)
+        if (formType === 'sign') {
+            // 이때 백한테 회원가입 정보 보내기
+        } else if (formType === 'login') {
+            // 이때 백한테 로그인 정보 보내기
+        }
     };
 
     const inputFields = formType === 'sign'
