@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import FeedArticleList from '../components/FeedArticleList';
 import style from '../styles/FeedMain.module.css'
 
 const FeedMain: React.FC = () => {
@@ -13,10 +14,13 @@ const FeedMain: React.FC = () => {
     // }, [nickname, userId, profileImage])
 
   return (
-    <div>
-        <img src={myProfileImag} alt='프로필이미지' className={style.profileImage}></img>
-      {myNickname}
-    </div>
+    <>
+      <div>
+          <img src={myProfileImag} alt='프로필이미지' className={style.profileImage}></img>
+        {myNickname}
+      </div>
+      <FeedArticleList />
+    </>      
   );
 };
 
