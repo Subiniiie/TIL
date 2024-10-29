@@ -125,19 +125,59 @@ const Input: React.FC<InputProps> = ({ formType }) => {
                 setTimeout(() => {
                     navigate('/');
                 }, 2000);
-        // try {
-        //     // API_URL 바꾸기
-        //     const response = await axios.post(`${API_URL}/api//api/auth/in`, {
-        //         // 뭐를 보내야할까
-        //     });
-        //     if (response.status === 200) {
-        //         console.log('로그인 성공')
-        //     }
-        
-        // } catch (error) {
-        //     console.error(error)
-        // }
-    }
+                setOpenAlert(false);
+                // try {
+                    //     // API_URL 바꾸기
+                    //     const response = await axios.post(`${API_URL}/api/auth/in`, {
+                        //         // 뭐를 보내야할까
+                        //     });
+                        //     if (response.status === 200) {
+                            //         console.log('로그인 성공')
+                            //     }
+                            // setOpenAlert(true);
+                            // setTimeout(() => {
+                                //     navigate('/');
+                                // }, 2000);
+                                // setOpenAlert(false);
+                                
+                                // } catch (error) {
+                                    //     console.error(error)
+                                    // }
+                                }
+                                
+                                const handleLogin = async () => {
+                                    // 확인용
+                                    setOpenAlert(true);
+                                    setTimeout(() => {
+                  navigate('/');
+                }, 2000);
+              setOpenAlert(false);
+
+            //   try {
+            //     const response = await axios.post(
+            //         `${API_URL}/api/auth/signin`,
+            //         {
+            //             뭘 보내야할까
+            //         },
+            //         {
+            //             headers: {
+
+            //             }
+            //         },
+            //     );
+            //     if (response.status === 200) {
+            //         const token = response.headers['access'];
+            //         if (token) {
+            //           await AsyncStorage.setItem('jwt_token', token);
+            
+            //           const payload = token.substring(
+            //             token.indexOf('.') + 1,
+            //             token.lastIndexOf('.'),
+            //           );
+            //   } catch(error) {
+            //     console.error(error)
+            //   }
+     }
     
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -152,6 +192,7 @@ const Input: React.FC<InputProps> = ({ formType }) => {
             handleSignup()
         } else if (formType === 'login') {
             // 이때 백한테 로그인 정보 보내기
+            handleLogin()
             // response 오면 리덕스에 저장
             // dispatch(userInfoActions.setNickname(formData.nickname || ''));
             // dispatch(userInfoActions.setUserId(formData.userId));
@@ -193,7 +234,7 @@ const Input: React.FC<InputProps> = ({ formType }) => {
                         accept={field.type === 'file' ? 'image/*' : undefined}
                     ></input>
                     {notices[field.name] && <div style={{ color: 'red' }}>{notices[field.name]}</div>}
-                    {field.name === 'userId' ? <Button onClick={sendVerifyNumber} disabled={!verifyBtn}>인증 번호 전송</Button> : null}
+                    {field.name === 'userId' && formType === 'sign' ? <Button onClick={sendVerifyNumber} disabled={!verifyBtn}>인증 번호 전송</Button> : null}
                     {field.name === 'confirmNumber' && verifyNumber ? <Button onClick={checkverifyNumber}>인증</Button> : null}
                     {field.name === 'confirmNumber' && submitSignup ? '인증되었습니다.': null}
                 </div>

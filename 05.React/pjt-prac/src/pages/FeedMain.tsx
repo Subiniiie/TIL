@@ -20,7 +20,6 @@ const FeedMain: React.FC = () => {
           <img src={myProfileImag} alt='프로필이미지' className={style.profileImage}></img>
         {myNickname}
       </div>
-      <ContentContainer />
       <FeedArticleList />
     </>      
   );
