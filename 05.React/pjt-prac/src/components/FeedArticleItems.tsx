@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import FeedArticleDetail from '@/pages/FeedArticleDetail';
 import  { myArticle }  from './FeedArticleList'
 import { Button } from '@chakra-ui/react';
 

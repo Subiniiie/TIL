@@ -15,12 +15,17 @@ const Main: React.FC = () => {
     const handleGoFeed = () => {
         navigate('/feed')
     }
+
+    const handleGoUserInfo = () => {
+      navigate('/user-info')
+    }
   return (
     <>
       메인
       <button onClick={handleGoLogin}>로그인</button>
       <button onClick={handleGoSignUp}>회원가입</button>
       <button onClick={handleGoFeed}>피드 메인</button>
+      <button onClick={handleGoUserInfo}>유저 정보</button>
     </>
   );
 };
