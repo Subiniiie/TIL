@@ -1,6 +1,9 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import SigninAlert from './SignupAlert';
 import { useDispatch } from 'react-redux';
 import { userInfoActions } from '../store/userInfo';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@chakra-ui/react';
 
 interface InputProps {
     formType: 'sign' | 'login';
@@ -21,6 +24,7 @@ const exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 const phoneRule = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
 const Input: React.FC<InputProps> = ({ formType }) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     
     const [ formData, setFormData ] = useState<FormData>({
@@ -35,7 +39,11 @@ const Input: React.FC<InputProps> = ({ formType }) => {
     });
 
     const [ notices, setNotices ] = useState<Record<string, string>>({});
-    const [previewImage, setPreviewImage] = useState<string | null>(null);
+    const [ verifyBtn, setVerifyBtn ] = useState<boolean>(false);
+    const [ verifyNumber, setVertifyNumber ] = useState<boolean>(false);
+    const [ submitSignup, setSubmitSignup ] = useState<boolean>(false)
+    const [ previewImage, setPreviewImage ] = useState<string | null>(null);
+    const [ openAlert, setOpenAlert ] = useState<boolean>(false);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value, files } = e.target;
@@ -47,6 +55,10 @@ const Input: React.FC<InputProps> = ({ formType }) => {
             setPreviewImage(previewUrl);
         } else {
             setFormData((prevFormData) => ({ ...prevFormData, [name]: value}));
+
+            if (name === 'userId') {
+                setVerifyBtn(exptext.test(value));
+            }
         }
         
         setNotices((prevNotices) => ({
@@ -60,13 +72,32 @@ const Input: React.FC<InputProps> = ({ formType }) => {
         
         let noticeMessage = '';
         
-        // 인증 번호는 어떻게 확인하냐
-        if (name === 'userId' && !exptext.test(value)) {
-            noticeMessage = '올바른 이메일 형식을 입력해주세요.'
+        if (name === 'userId') {
+            if (!exptext.test(value)) {
+                noticeMessage = '올바른 이메일 형식을 입력해주세요.'
+            } else {
+                setVerifyBtn(true)
+            }
         } else if (name === 'password' && (value.length < 8 || 16 < value.length)) {
             noticeMessage = '비밀번호는 8-16글자 사이로 입력해주세요.'
-        } else if (name === 'confirmPassword' && value !== formData.password) {
-            noticeMessage = '비밀번호가 일치하지 않습니다.'
+        } else if (name === 'confirmPassword') {
+            if (value !== formData.password) {
+                noticeMessage = '비밀번호가 일치하지 않습니다.'
+            } else {
+                noticeMessage = '비밀번호가 일치합니다.'
+            }
+        } else if (name === 'userName') {
+            if (2 <= value.length && value.length <= 10) {
+                noticeMessage = '확인되었습니다.'
+            } else {
+                noticeMessage = '다시 한 번 확인해주세요.'
+            }
+        } else if (name === 'nickname') {
+            if (1 <= value.length && value.length <= 20) {
+                noticeMessage = '확인되었습니다.'
+            } else {
+                noticeMessage = '다시 한 번 확인해주세요.'
+            }
         } else if (name === 'phoneNumber' && !phoneRule.test(value)) {
             noticeMessage = '올바른 번호 형식을 입력해주세요.'
         }
@@ -76,6 +107,37 @@ const Input: React.FC<InputProps> = ({ formType }) => {
             [name]: noticeMessage
         }));
     };
+
+    const sendVerifyNumber = () => {
+        // 인증 이메일 전송하는 코드 짜기
+
+        setVertifyNumber(true);
+
+    }
+
+    const checkverifyNumber = () => {
+        setSubmitSignup(true)
+    }
+
+    const handleSignup = async () => {
+        // 확인용
+                setOpenAlert(true);
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
+        // try {
+        //     // API_URL 바꾸기
+        //     const response = await axios.post(`${API_URL}/api//api/auth/in`, {
+        //         // 뭐를 보내야할까
+        //     });
+        //     if (response.status === 200) {
+        //         console.log('로그인 성공')
+        //     }
+        
+        // } catch (error) {
+        //     console.error(error)
+        // }
+    }
     
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -87,6 +149,7 @@ const Input: React.FC<InputProps> = ({ formType }) => {
         
         if (formType === 'sign') {
             // 이때 백한테 회원가입 정보 보내기
+            handleSignup()
         } else if (formType === 'login') {
             // 이때 백한테 로그인 정보 보내기
             // response 오면 리덕스에 저장
@@ -113,8 +176,9 @@ const Input: React.FC<InputProps> = ({ formType }) => {
             {label: '아이디', type: 'text', name: 'userId'},
             {label: '비밀번호', type: 'text', name: 'password'},
         ];
-  return  (
-    <div>
+        return  (
+            <div>
+        {openAlert && <SigninAlert title={'회원가입 성공'} />}
         <form onSubmit={handleSubmit}>
             {inputFields.map((field, index) => (
                 <div key={index}>
@@ -129,10 +193,13 @@ const Input: React.FC<InputProps> = ({ formType }) => {
                         accept={field.type === 'file' ? 'image/*' : undefined}
                     ></input>
                     {notices[field.name] && <div style={{ color: 'red' }}>{notices[field.name]}</div>}
+                    {field.name === 'userId' ? <Button onClick={sendVerifyNumber} disabled={!verifyBtn}>인증 번호 전송</Button> : null}
+                    {field.name === 'confirmNumber' && verifyNumber ? <Button onClick={checkverifyNumber}>인증</Button> : null}
+                    {field.name === 'confirmNumber' && submitSignup ? '인증되었습니다.': null}
                 </div>
             ))}
             <button type='submit'>
-                {formType === 'sign' ? '제출' : '로그인'}
+                {formType === 'sign' ? submitSignup  ? '회원가입' : '' : '로그인'}
             </button>
         </form>
     </div>
