@@ -17,7 +17,6 @@ const FeedArticleList: React.FC = () => {
   }, [])
   return (
     <div>
-      /* content */
       {myArticles.map((article) => (
      <FeedArticleItems key={article.id} article={article}/>
     )
