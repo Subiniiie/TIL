@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userInfoActions } from '../store/userInfo';
 
 interface InputProps {
@@ -14,6 +14,7 @@ interface FormData {
     userName?: string;
     nickname?: string;
     phoneNumber?: string;
+    profileImage?: File | string | null;
 }
 
 const exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
@@ -30,18 +31,24 @@ const Input: React.FC<InputProps> = ({ formType }) => {
         userName: '',
         nickname: '',
         phoneNumber: '',
+        profileImage: 'public/avatar.png'
     });
 
     const [ notices, setNotices ] = useState<Record<string, string>>({});
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        const { name, value, files } = e.target;
 
+        if (name === 'profileImage' && files) {
+            const file = files[0];
+            setFormData((prevFormData) => ({...prevFormData, profileImage: file}));
+            const previewUrl = URL.createObjectURL(file);
+            setPreviewImage(previewUrl);
+        } else {
+            setFormData((prevFormData) => ({ ...prevFormData, [name]: value}));
+        }
+        
         setNotices((prevNotices) => ({
             ...prevNotices,
             [name]: ''
@@ -52,32 +59,42 @@ const Input: React.FC<InputProps> = ({ formType }) => {
         const { name, value } = e.target;
         
         let noticeMessage = '';
-
+        
         // 인증 번호는 어떻게 확인하냐
         if (name === 'userId' && !exptext.test(value)) {
             noticeMessage = '올바른 이메일 형식을 입력해주세요.'
-        } else if (name === 'password' && value.length < 8 || 16 < value.length) {
+        } else if (name === 'password' && (value.length < 8 || 16 < value.length)) {
             noticeMessage = '비밀번호는 8-16글자 사이로 입력해주세요.'
         } else if (name === 'confirmPassword' && value !== formData.password) {
             noticeMessage = '비밀번호가 일치하지 않습니다.'
         } else if (name === 'phoneNumber' && !phoneRule.test(value)) {
             noticeMessage = '올바른 번호 형식을 입력해주세요.'
         }
-
+        
         setNotices ((prevNotices) => ({
             ...prevNotices,
             [name]: noticeMessage
         }));
     };
-
+    
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+        
+        const formDataToSubmit = new FormData();
+        Object.entries(formData).forEach(([key, value]) => {
+            if (value) formDataToSubmit.append(key, value instanceof File ? value : String(value));
+        })
+        
         if (formType === 'sign') {
             // 이때 백한테 회원가입 정보 보내기
         } else if (formType === 'login') {
             // 이때 백한테 로그인 정보 보내기
-            dispatch(userInfoActions.setNickname(formData.nickname || ''));
-            dispatch(userInfoActions.setUserId(formData.userId));
+            // response 오면 리덕스에 저장
+            // dispatch(userInfoActions.setNickname(formData.nickname || ''));
+            // dispatch(userInfoActions.setUserId(formData.userId));
+            // dispatch(userInfoActions.setProflileImage(previewUrl));
+            
+            console.log('리덕스에 닉네임, 아이디 저장')
         }
     };
 
@@ -90,6 +107,7 @@ const Input: React.FC<InputProps> = ({ formType }) => {
             {label: '이름', type: 'text', name: 'userName'},
             {label: '별명', type: 'text', name: 'nickname'},
             {label: '전화번호', type: 'text', name: 'phoneNumber'},
+            {label: '프로필 사진', type: 'file', name: 'profileImage'}
         ] 
         : [
             {label: '아이디', type: 'text', name: 'userId'},
@@ -104,10 +122,11 @@ const Input: React.FC<InputProps> = ({ formType }) => {
                     <input
                         type={field.type}
                         name={field.name}
-                        value={formData[field.name as keyof FormData] || ''}
+                        value={field.name !== 'profileImage' ? formData[field.name as keyof FormData] || '' : undefined}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         placeholder={field.name === 'userId' ? 'abc@abc.com' : field.name === 'phoneNumber' ? '010-0000-0000' : ''}
+                        accept={field.type === 'file' ? 'image/*' : undefined}
                     ></input>
                     {notices[field.name] && <div style={{ color: 'red' }}>{notices[field.name]}</div>}
                 </div>

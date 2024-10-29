@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import style from '../styles/FeedMain.module.css'
 
 const FeedMain: React.FC = () => {
-    const { nickname, userId } = useSelector((state: any) => state.userInfo);
+    const { nickname, userId, profileImage } = useSelector((state: any) => state.userInfo);
+    const [ myNickname, setMynickname ] = useState<string>('수빈');
+    const [ myProfileImag, setMyProfileImage ] = useState<string>('public/avatar.png');
+    // useEffect(() => {
+    //   console.log('redux nickname:', nickname)
+    //   setMynickname(nickname)
+    //   setMyProfileImage(profileImage)
+    // }, [nickname, userId, profileImage])
+
   return (
     <div>
-      {nickname}
-      {userId}
+        <img src={myProfileImag} alt='프로필이미지' className={style.profileImage}></img>
+      {myNickname}
     </div>
   );
 };

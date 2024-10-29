@@ -4,11 +4,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 interface UserInfoState {
     nickname: string;
     userId: string;
+    profileImage: string | null;
 }
 
 const initialState: UserInfoState = {
     nickname: '',
-    userId: ''
+    userId: '',
+    profileImage: ''
 }
 
 const userInfoSlice = createSlice({
@@ -20,6 +22,9 @@ const userInfoSlice = createSlice({
         },
         setUserId(state, action: PayloadAction<string>) {
             state.userId = action.payload;
+        },
+        setProflileImage(state, action: PayloadAction<string | null>) {
+            state.profileImage = action.payload;
         },
     }
 })
