@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import SigninAlert from './SignupAlert';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import { userInfoActions } from '../store/userInfo';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
@@ -118,14 +119,26 @@ const Input: React.FC<InputProps> = ({ formType }) => {
         }));
     };
 
-    const sendVerifyNumber = () => {
+    const sendVerifyNumber = async () => {
         // 인증 이메일 전송하는 코드 짜기
+        // try {
+        //     const response = await axios.post(
+        //         // 서버 고치기
+        //         // '/api/auth/email',
+        //         {'email' : formData.userId}
+        //     )
+        //     console.log(response.data)
+
+        // } catch(error) {
+        //     console.error(error)
+        // }
 
         setVertifyNumber(true);
 
     }
 
     const checkverifyNumber = () => {
+        // 인증 번호랑
         setSubmitSignup(true)
     }
 
