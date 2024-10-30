@@ -16,6 +16,11 @@ interface FormData {
     confirmPassword?: string;
     userName?: string;
     nickname?: string;
+    gender?: string;
+    birthday?: string;
+    region?: string;
+    position?: string;
+    genre?: string;
     phoneNumber?: string;
     profileImage?: File | string | null;
 }
@@ -34,6 +39,11 @@ const Input: React.FC<InputProps> = ({ formType }) => {
         confirmPassword: '',
         userName: '',
         nickname: '',
+        gender: '',
+        birthday: '',
+        region: '',
+        position: '',
+        genre: '', 
         phoneNumber: '',
         profileImage: 'public/avatar.png'
     });
@@ -45,8 +55,8 @@ const Input: React.FC<InputProps> = ({ formType }) => {
     const [ previewImage, setPreviewImage ] = useState<string | null>(null);
     const [ openAlert, setOpenAlert ] = useState<boolean>(false);
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value, files } = e.target;
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value, files } = e.target as HTMLInputElement;
 
         if (name === 'profileImage' && files) {
             const file = files[0];
@@ -67,7 +77,7 @@ const Input: React.FC<InputProps> = ({ formType }) => {
         }));
     };
     
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         
         let noticeMessage = '';
@@ -126,6 +136,7 @@ const Input: React.FC<InputProps> = ({ formType }) => {
                     navigate('/');
                 }, 2000);
                 setOpenAlert(false);
+                console.log('formData:', formData)
                 // try {
                     //     // API_URL 바꾸기
                     //     const response = await axios.post(`${API_URL}/api/auth/in`, {
@@ -204,12 +215,17 @@ const Input: React.FC<InputProps> = ({ formType }) => {
 
     const inputFields = formType === 'sign'
         ? [
-            {label: '아이디', type: 'text', name: 'userId'},
+            {label: '아이디', type: 'email', name: 'userId'},
             {label: '인증 번호 입력', type: 'text', name: 'confirmNumber'},
             {label: '비밀번호', type: 'text', name: 'password'},
             {label: '비밀번호 확인', type: 'text', name: 'confirmPassword'},
             {label: '이름', type: 'text', name: 'userName'},
             {label: '별명', type: 'text', name: 'nickname'},
+            {label: '성별', type: 'select', name: 'gender', options: ['남성', '여성', '기타']},
+            {label: '생년월일', type: 'date', name: 'birthday'},
+            {label: '지역', type: 'select', name: 'region', options: ['서울', '부산', '대구', '인천', '광주', '대전', '울산', '제주', '경기도 남부', '경기도 북부', '강원도 남부', '강원도 북부', '충청북도', '충청남도', '전라북도', '전라남도', '경상북도', '경상남도']},
+            {label: '포지션', type: 'select', name: 'position', options: ['보컬', '기타', '베이스', '키보드', '드럼']},
+            {label: '장르', type: 'select', name: 'genre', options: ['락발라드', '락']},
             {label: '전화번호', type: 'text', name: 'phoneNumber'},
             {label: '프로필 사진', type: 'file', name: 'profileImage'}
         ] 
@@ -224,6 +240,21 @@ const Input: React.FC<InputProps> = ({ formType }) => {
             {inputFields.map((field, index) => (
                 <div key={index}>
                     <label>{field.label}</label>
+                    {field.type === 'select' ? (
+                            <select
+                                name={field.name}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={formData[field.name as keyof FormData] || ''}
+                            >
+                                <option value="">선택</option>
+                                {field.options?.map((option, idx) => (
+                                    <option key={idx} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
+                        ) : (
                     <input
                         type={field.type}
                         name={field.name}
@@ -233,6 +264,7 @@ const Input: React.FC<InputProps> = ({ formType }) => {
                         placeholder={field.name === 'userId' ? 'abc@abc.com' : field.name === 'phoneNumber' ? '010-0000-0000' : ''}
                         accept={field.type === 'file' ? 'image/*' : undefined}
                     ></input>
+                        )}
                     {notices[field.name] && <div style={{ color: 'red' }}>{notices[field.name]}</div>}
                     {field.name === 'userId' && formType === 'sign' ? <Button onClick={sendVerifyNumber} disabled={!verifyBtn}>인증 번호 전송</Button> : null}
                     {field.name === 'confirmNumber' && verifyNumber ? <Button onClick={checkverifyNumber}>인증</Button> : null}
