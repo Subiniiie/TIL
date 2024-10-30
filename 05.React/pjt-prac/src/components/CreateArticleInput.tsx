@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/react';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface FormData {
     title: string;
@@ -8,6 +9,8 @@ interface FormData {
 }
 
 const CreateArticleInput: React.FC = () => {
+    const navigate = useNavigate();
+
     const [ formData, setFormData ] = useState<FormData>({
         title: '',
         content: '',
@@ -66,9 +69,30 @@ const CreateArticleInput: React.FC = () => {
             if (value) formDataToSubmit.append(key, value instanceof File ? value : String(value));
         })
 
+        // 작성하기 버튼을 누르면 백으로 데이터 보냄
+
+        // 토큰 가져오기
+        // axios 설치
+        // API_URL 설정
+        // try {
+        //     const response = await axios.post(
+        //         `${API_URL}/api/boards`,
+        //         // 뭘 보낼까?,
+        //         {
+        //             header: {
+        //                 access: ${token}
+        //             }
+        //         }
+        //     )
+        // const newPostId = response.data.id;
+
+        // navigate(`/feed/article/${newPostId}`)
+        navigate('/feed/article/1')
+        // } catch(error) {
+        //     console.error(error)
+        // }
         
     };
-
 
   return (
     <div>
