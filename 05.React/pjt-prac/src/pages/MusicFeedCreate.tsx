@@ -2,13 +2,13 @@ import React from 'react';
 import FeedHeader from '@/components/FeedHeader';
 import CreateArticleInput from '@/components/CreateArticleInput';
 
-const FeedCreate: React.FC = () => {
+const MusicFeedCreate: React.FC = () => {
   return (
     <div>
       <FeedHeader />
-      <CreateArticleInput formType='feed' />
+      <CreateArticleInput formType='musicFeed' />
     </div>
   );
 };
 
-export default FeedCreate;
+export default MusicFeedCreate;

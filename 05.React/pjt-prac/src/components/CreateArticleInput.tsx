@@ -2,13 +2,17 @@ import { Button } from '@chakra-ui/react';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+interface ArticleInputProps {
+    formType: 'feed' | 'musicFeed';
+}
+
 interface FormData {
     title: string;
     content: string;
     image: File | string | null;
 }
 
-const CreateArticleInput: React.FC = () => {
+const CreateArticleInput: React.FC<ArticleInputProps> = ({ formType }) => {
     const navigate = useNavigate();
 
     const [ formData, setFormData ] = useState<FormData>({
@@ -63,6 +67,14 @@ const CreateArticleInput: React.FC = () => {
 
     const handleSubmit = (e:FormEvent) => {
         e.preventDefault();
+
+        if (formType === 'musicFeed' && !formData.image) {
+            setNotices((prevNotices) => ({
+                ...prevNotices,
+                image: '음악 파일을 올려주세요!'
+            }))
+            return;
+        }
 
         const formDataToSubmit = new FormData();
         Object.entries(formData).forEach(([key, value]) => {
