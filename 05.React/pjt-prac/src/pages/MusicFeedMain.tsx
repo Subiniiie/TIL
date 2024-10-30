@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MusicFeedArticleList from '@/components/MusicFeedArticleList';
-import style from '../styles/FeedMain.module.css'
+import FeedHeader from '@/components/FeedHeader';
 
 const MusicFeedMain: React.FC = () => {
   const [ myNickname, setMynickname ] = useState<string>('수빈');
@@ -8,10 +8,7 @@ const MusicFeedMain: React.FC = () => {
 
   return (
     <div>
-      <div>
-          <img src={myProfileImag} alt='프로필이미지' className={style.profileImage}></img>
-        {myNickname}
-      </div>
+      <FeedHeader />
       <MusicFeedArticleList />
     </div>
   );

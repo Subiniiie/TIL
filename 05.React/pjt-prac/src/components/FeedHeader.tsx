@@ -1,0 +1,24 @@
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import style from '../styles/FeedMain.module.css'
+
+
+const FeedHeader: React.FC = () => {
+    const { nickname, userId, profileImage } = useSelector((state: any) => state.userInfo);
+    const [ myNickname, setMynickname ] = useState<string>('수빈');
+    const [ myProfileImag, setMyProfileImage ] = useState<string>('/avatar.png');
+    // useEffect(() => {
+    //   console.log('redux nickname:', nickname)
+    //   setMynickname(nickname)
+    //   setMyProfileImage(profileImage)
+    // }, [nickname, userId, profileImage])
+
+  return (
+    <div>
+    <img src={myProfileImag} alt='프로필이미지' className={style.profileImage}></img>
+  {myNickname}
+</div>
+  );
+};
+
+export default FeedHeader;

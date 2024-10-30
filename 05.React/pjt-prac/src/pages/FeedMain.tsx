@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import FeedHeader from '@/components/FeedHeader';
 import FeedArticleList from '../components/FeedArticleList';
-import style from '../styles/FeedMain.module.css'
+import ReviewContainer from '@/components/ReviewContainer';
+import { Button } from '@chakra-ui/react';
 
 const FeedMain: React.FC = () => {
-    const { nickname, userId, profileImage } = useSelector((state: any) => state.userInfo);
-    const [ myNickname, setMynickname ] = useState<string>('수빈');
-    const [ myProfileImag, setMyProfileImage ] = useState<string>('public/avatar.png');
-    // useEffect(() => {
-    //   console.log('redux nickname:', nickname)
-    //   setMynickname(nickname)
-    //   setMyProfileImage(profileImage)
-    // }, [nickname, userId, profileImage])
+    const navigate = useNavigate();
+
+    const goArticleCreate = () => {
+      navigate('/feed/create')
+    }
 
   return (
     <>
-      <div>
-          <img src={myProfileImag} alt='프로필이미지' className={style.profileImage}></img>
-        {myNickname}
-      </div>
+    <FeedHeader />
+      <Button onClick={goArticleCreate}>글쓰기</Button>
+      <Button>음원 올리기</Button>
       <FeedArticleList />
+      <ReviewContainer />
     </>      
   );
 };
