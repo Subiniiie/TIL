@@ -6,6 +6,7 @@ import UserInfo from "@/pages/UserInfo";
 import FeedMain from "../pages/FeedMain";
 import FeedArticleDetail from "@/pages/FeedArticleDetail";
 import MusicFeedMain from "@/pages/MusicFeedMain";
+import MusicFeedDetail from "@/pages/MusicFeedDetail";
 
 const Router = () => {
     return (
@@ -18,6 +19,7 @@ const Router = () => {
                 <Route path="/feed" element={<FeedMain />} />
                 <Route path='/feed/article/:id' element={<FeedArticleDetail />} />
                 <Route path="/music-feed" element={<MusicFeedMain />} />
+                <Route path='/music-feed/article/:id' element={<MusicFeedDetail />} />
             </Routes>
         </BrowserRouter>
     )

@@ -7,6 +7,7 @@ export interface myMusicArticle {
 }
 
 const MusicFeedArticleList: React.FC = () => {
+  console.log('음악피드목록')
     const [ myMusicArticles, setMyMusicArticles ] = useState<myMusicArticle[]>([]);
     useEffect(() => {
         setMyMusicArticles([

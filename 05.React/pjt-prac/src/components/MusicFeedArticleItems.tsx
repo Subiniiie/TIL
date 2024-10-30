@@ -10,9 +10,13 @@ interface MusicFeedArticleItemsProps {
 const MusicFeedArticleItems: React.FC<MusicFeedArticleItemsProps> = ({musicArticle}) => {
     const navigate = useNavigate();
 
+    const goMusicFeedArticleDetail = () => {
+      navigate(`/music-feed/article/${musicArticle.id}`)
+    }
+
   return (
     <div>
-      <Button>
+      <Button onClick={goMusicFeedArticleDetail}>
         {musicArticle.title}
       </Button>
     </div>
