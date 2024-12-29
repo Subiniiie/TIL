@@ -24,11 +24,6 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
-    public void clearStore() {
-        em.createQuery("DELETE FROM Member").executeUpdate();
-    }
-
-    @Override
     public Optional<Member> findById(Long id) {
         Member member = em.find(Member.class, id);
         return Optional.ofNullable(member);
