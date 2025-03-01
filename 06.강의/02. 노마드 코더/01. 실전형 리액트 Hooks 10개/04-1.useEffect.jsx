@@ -1,24 +1,21 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
 
-const useTitle = (initialTitle) => {
-  const [title, setTitle] = useState(initialTitle);
-  const updateTitle = () => {
-    // head에 있는 <title>을 말하는 거임
-    const htmlTitle = document.querySelector("title");
-    htmlTitle.innerText = title;
-  };
-  useEffect(updateTitle, [title]);
-  return setTitle;
-};
-
 export default function App() {
-  // setTitle과 동일
-  const titleUpdater = useTitle("Loading...");
-  setTimeout(() => titleUpdater("Home"), 50000);
+  const sayHello = () => {
+    console.log("hello");
+  };
+
+  const [number, setNumber] = useState(0);
+  const [aNumber, setANumber] = useState(0);
+
+  useEffect(sayHello, [number]);
+
   return (
     <div className="App">
       <h1>Hello</h1>
+      <button onClick={() => setNumber(number + 1)}>{number}</button>
+      <button onClick={() => setANumber(aNumber + 1)}>{aNumber}</button>
     </div>
   );
 }
