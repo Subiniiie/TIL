@@ -1,0 +1,13 @@
+/* 뷰포트의 넓이가 420px 미만일 때때 */
+div {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+/* 뷰포트의 넓이가 420px 이상일 때 */
+@media only screen and (min-width: 420px) {
+    div {
+        background-color: olive;
+    }
+}
