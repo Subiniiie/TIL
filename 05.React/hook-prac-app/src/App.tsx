@@ -1,15 +1,12 @@
-import Memo from './pages/Memo'
-import TodoPage from './pages/memo/TodoPage';
-import { Route, Routes } from 'react-router-dom';
+import React from "react"
+import expansiveCalculate from "./pages/Memo"
 
 function App() {
 
   return (
-    <Routes>
-      <Route path="/memo" element={<Memo />}/>
-      <Route path="/memo/todoPage" element={<TodoPage />}/>
-
-    </Routes>
+    <div>
+      <p>Hello</p>
+    </div>
   )
 }
 
