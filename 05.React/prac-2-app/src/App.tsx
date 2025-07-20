@@ -1,4 +1,4 @@
-import Date from '@components/main/Date'
+import { Wrapper }  from '@components/index'
 import './App.css'
 
 
@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <Date />
+      <Wrapper />
     </>
   )
 }

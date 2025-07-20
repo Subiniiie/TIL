@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const useDate = () => {
     const [ startDate, setStartDate ] = useState<Date | null>(new Date());
