@@ -13,10 +13,13 @@
     "@tailwindcss/vite": "^4.1.11",
     "autoprefixer": "^10.4.21",
     "axios": "^1.10.0",
+    "date-fns": "^4.1.0",
     "path": "^0.12.7",
     "react": "^19.1.0",
+    "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",
     "react-kakao-maps-sdk": "^1.2.0",
+    "react-tailwindcss-datepicker": "^2.0.0",
     "tailwindcss": "^4.1.11",
     "vite-plugin-svgr": "^4.3.0"
   },
