@@ -1,6 +1,5 @@
 import { Header } from "./components/header/Header"
-import Main from "./components/signup/Main"
-import { Button } from "./components/Button"
+import Main from "./components/main/Main"
 
 function App() {
 

@@ -17,11 +17,6 @@ const StyledSpan = styled.span`
   line-height: 22px;
 `;
 
-const StyledDiv = styled.div`
-  width: 132px;
-  height: 42px;
-  border-radius: 8px;
-`;
 
 interface ButtonProps {
     title: string;
@@ -29,10 +24,8 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({ title }) => {
   return (
-    <StyledDiv>
       <StyledRectangle3>
         <StyledSpan>{title}</StyledSpan>
         </StyledRectangle3>
-    </StyledDiv>
   );
 };
